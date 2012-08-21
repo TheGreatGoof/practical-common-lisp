@@ -1,0 +1,413 @@
+(progn (load "d:/Amith/emacs/site-lisp/slime/swank-loader.lisp" :verbose t) (funcall (read-from-string "swank-loader:init")) (funcall (read-from-string "swank:start-server") "c:/Users/j1009517/AppData/Local/Temp/slime.3956"))
+
+This is SBCL 1.0.55, an implementation of ANSI Common Lisp.
+More information about SBCL is available at <http://www.sbcl.org/>.
+
+SBCL is free software, provided as is, with absolutely no warranty.
+It is mostly in the public domain; some portions are provided under
+BSD-style licenses.  See the CREDITS and COPYING files in the
+distribution for more information.
+
+This is experimental prerelease support for the Windows platform: use
+at your own risk.  "Your Kitten of Death awaits!"
+* 
+; loading #P"d:/Amith/emacs/site-lisp/slime/swank-loader.lisp"
+; loading #P"D:/Amith/emacs/Amith/.slime/fasl/2012-05-21/sbcl-1.0.55-no-threads-win32-x86/swank-backend.fasl"
+; loading #P"D:/Amith/emacs/Amith/.slime/fasl/2012-05-21/sbcl-1.0.55-no-threads-win32-x86/swank-source-path-parser.fasl"
+; loading #P"D:/Amith/emacs/Amith/.slime/fasl/2012-05-21/sbcl-1.0.55-no-threads-win32-x86/swank-source-file-cache.fasl"
+; loading #P"D:/Amith/emacs/Amith/.slime/fasl/2012-05-21/sbcl-1.0.55-no-threads-win32-x86/swank-sbcl.fasl"
+STYLE-WARNING: redefining EMACS-INSPECT (#<BUILT-IN-CLASS T>) in DEFMETHOD
+; loading #P"D:/Amith/emacs/Amith/.slime/fasl/2012-05-21/sbcl-1.0.55-no-threads-win32-x86/swank-gray.fasl"
+STYLE-WARNING:
+   Implicitly creating new generic function STREAM-READ-CHAR-WILL-HANG-P.
+; loading #P"D:/Amith/emacs/Amith/.slime/fasl/2012-05-21/sbcl-1.0.55-no-threads-win32-x86/swank-match.fasl"
+; loading #P"D:/Amith/emacs/Amith/.slime/fasl/2012-05-21/sbcl-1.0.55-no-threads-win32-x86/swank-rpc.fasl"
+; loading #P"D:/Amith/emacs/Amith/.slime/fasl/2012-05-21/sbcl-1.0.55-no-threads-win32-x86/swank.fasl"
+WARNING: These Swank interfaces are unimplemented:
+ (BACKGROUND-SAVE-IMAGE DISASSEMBLE-FRAME EXEC-IMAGE INTERRUPT-THREAD
+  RECEIVE-IF SAVE-IMAGE SLDB-BREAK-AT-START SLDB-BREAK-ON-RETURN SPAWN)
+;; Swank started at port: 14367.
+CL-USER> (hello-world)
+
+; in: HELLO-WORLD
+;     (HELLO-WORLD)
+; 
+; caught STYLE-WARNING:
+;   undefined function: HELLO-WORLD
+; 
+; compilation unit finished
+;   Undefined function:
+;     HELLO-WORLD
+;   caught 1 STYLE-WARNING condition
+CL-USER> (hello-world)
+CL-USER> (load "test1.lisp")
+T
+CL-USER> (hello-world)
+hello, world testNIL
+CL-USER> (load (compile-file "test1.lisp"))
+
+; compiling file "d:/Amith/lisp-projects/test1.lisp" (written 25 MAY 2012 04:50:58 PM):
+; compiling (DEFUN HELLO-WORLD ...)
+
+; d:/Amith/lisp-projects/test1.fasl written
+; compilation finished in 0:00:00.013
+T
+CL-USER> 
+; compiling file "d:/Amith/lisp-projects/test1.lisp" (written 25 MAY 2012 04:50:58 PM):
+
+; d:/Amith/lisp-projects/test1.fasl written
+; compilation finished in 0:00:00.006
+  C-c C-z  C-c C-z
+
+
+
+
+adsf
+CL-USER> ,cd
+CL-USER> CL-USER> 
+(hello-world)
+hello, world testNIL
+CL-USER> (list 1 2 3)
+(1 2 3)
+CL-USER> (list :a 1 :b 2 :c 3)
+(:A 1 :B 2 :C 3)
+CL-USER> (getf (list :a 1 :b 2 :c 3) :a)
+1
+CL-USER> (defun make-cd (title artist rating ripped)
+	   (list :title title :artist artist :rating rating :ripped ripped))
+MAKE-CD
+CL-USER> (make-cd "Roses" "Kathy Mattea" 7 t)
+(:TITLE "Roses" :ARTIST "Kathy Mattea" :RATING 7 :RIPPED T)
+CL-USER> (defvar *db* nil)
+*DB*
+CL-USER> (defun add-record(cd) (push cd *db*))
+ADD-RECORD
+CL-USER> (add-record (make-cd "Roses" "Kathy Mattea" 7 t))
+((:TITLE "Roses" :ARTIST "Kathy Mattea" :RATING 7 :RIPPED T))
+CL-USER> (add-record (make-cd "Fly" "Dixie Chicks" 8 t))
+((:TITLE "Fly" :ARTIST "Dixie Chicks" :RATING 8 :RIPPED T)
+          (:TITLE "Roses" :ARTIST "Kathy Mattea" :RATING 7 :RIPPED T))
+CL-USER> *db*
+((:TITLE "Fly" :ARTIST "Dixie Chicks" :RATING 8 :RIPPED T)
+          (:TITLE "Roses" :ARTIST "Kathy Mattea" :RATING 7 :RIPPED T))
+CL-USER> (defun dump-db ()
+	   (dolist (cd *db*)
+	     (format t "~{a:~10t~a~%~}~%" cd)))
+DUMP-DB
+CL-USER> (dump-db)
+a: TITLE
+a:        Fly
+a:        ARTIST
+a:        Dixie Chicks
+a:        RATING
+a:        8
+a:        RIPPED
+a:        T
+
+a:        TITLE
+a:        Roses
+a:        ARTIST
+a:        Kathy Mattea
+a:        RATING
+a:        7
+a:        RIPPED
+a:        T
+
+NIL
+CL-USER> (format nil "~r" 124897346586298437581743565487294857264598745)
+"one hundred twenty-four tredecillion eight hundred ninety-seven duodecillion three hundred forty-six undecillion five hundred eighty-six decillion two hundred ninety-eight nonillion four hundred thirty-seven octillion five hundred eighty-one septillion seven hundred forty-three sextillion five hundred sixty-five quintillion four hundred eighty-seven quadrillion two hundred ninety-four trillion eight hundred fifty-seven billion two hundred sixty-four million five hundred ninety-eight thousand seven hundred forty-five"
+CL-USER> (format nil "~r" 546432153464251.236545)
+"five hundred forty-six trillion four hundred thirty-two billion one hundred fifty-five million six hundred forty-eight thousand "
+CL-USER> (format t "~a" "Dixie Chicks")
+Dixie ChicksNIL
+CL-USER> (format t "~a" :title)
+TITLENIL
+CL-USER> (format t "~a:~10t~a" :artist "Dixie Chicks")
+ARTIST: Dixie ChicksNIL
+CL-USER> *db*
+((:TITLE "Fly" :ARTIST "Dixie Chicks" :RATING 8 :RIPPED T)
+          (:TITLE "Roses" :ARTIST "Kathy Mattea" :RATING 7 :RIPPED T))
+CL-USER> *db*
+((:TITLE "Fly" :ARTIST "Dixie Chicks" :RATING 8 :RIPPED T)
+          (:TITLE "Roses" :ARTIST "Kathy Mattea" :RATING 7 :RIPPED T))
+CL-USER> (format t "~{~{~a:~10~a~%~}~%~}" *db*)
+TITLE:~~~~~~~~~~a
+Fly:~~~~~~~~~~a
+ARTIST:~~~~~~~~~~a
+Dixie Chicks:~~~~~~~~~~a
+RATING:~~~~~~~~~~a
+8:~~~~~~~~~~a
+RIPPED:~~~~~~~~~~a
+T:~~~~~~~~~~a
+
+TITLE:~~~~~~~~~~a
+Roses:~~~~~~~~~~a
+ARTIST:~~~~~~~~~~a
+Kathy Mattea:~~~~~~~~~~a
+RATING:~~~~~~~~~~a
+7:~~~~~~~~~~a
+RIPPED:~~~~~~~~~~a
+T:~~~~~~~~~~a
+
+NIL
+CL-USER> (
+
+
+
+asdf
+CL-USER> (format t "~%~{~{~a:~10t~a~%~}~%~}" *db*)
+
+TITLE:    Fly
+ARTIST:   Dixie Chicks
+RATING:   8
+RIPPED:   T
+
+TITLE:    Roses
+ARTIST:   Kathy Mattea
+RATING:   7
+RIPPED:   T
+
+NIL
+CL-USER> (dump-db)
+a: TITLE
+a:        Fly
+a:        ARTIST
+a:        Dixie Chicks
+a:        RATING
+a:        8
+a:        RIPPED
+a:        T
+
+a:        TITLE
+a:        Roses
+a:        ARTIST
+a:        Kathy Mattea
+a:        RATING
+a:        7
+a:        RIPPED
+a:        T
+
+NIL
+CL-USER> (defun dump-db()
+	   (dolist (cd *db*)
+	     (format t "~{~%~a:~10t~a~}" cd)))
+STYLE-WARNING: redefining COMMON-LISP-USER::DUMP-DB in DEFUN
+DUMP-DB
+CL-USER> (dump-db)
+
+TITLE:    Fly
+ARTIST:   Dixie Chicks
+RATING:   8
+RIPPED:   T
+TITLE:    Roses
+ARTIST:   Kathy Mattea
+RATING:   7
+RIPPED:   TNIL
+CL-USER> (defun dump-db()
+	   (dolist (cd *db*)
+	     (format t "~%{~%~a:~10t~a~%~}" cd)))
+; in: DEFUN DUMP-DB
+;     (FORMAT T "~%{~%~a:~10t~a~%~}" CD)
+; 
+; caught ERROR:
+;   during macroexpansion of (FORMATTER "~%{~%~a:~10t~a~%~}"). Use
+;   *BREAK-ON-SIGNALS* to intercept:
+;   
+;    error in FORMAT: no corresponding open brace
+;     ~%{~%~a:~10t~a~%~}
+;                      ^
+; 
+; compilation unit finished
+;   caught 1 ERROR condition
+STYLE-WARNING: redefining COMMON-LISP-USER::DUMP-DB in DEFUN
+DUMP-DB
+CL-USER> (defun dump-db()
+	   (dolist (cd *db*)
+	     (format t "~%~{~%~a:~10t~a~%~}" cd)))
+STYLE-WARNING: redefining COMMON-LISP-USER::DUMP-DB in DEFUN
+DUMP-DB
+CL-USER> (dump-db)
+
+
+TITLE:    Fly
+
+ARTIST:   Dixie Chicks
+
+RATING:   8
+
+RIPPED:   T
+
+
+TITLE:    Roses
+
+ARTIST:   Kathy Mattea
+
+RATING:   7
+
+RIPPED:   T
+NIL
+CL-USER> (defun dump-db()
+	   (dolist (cd *db*)
+	     (format t "~%
+
+)))
+
+)))
+)
+)
+asdf
+asdf
+teoiwrhfklaj sd 
+"
+)))
+; in: DEFUN DUMP-DB
+;     (DOLIST (CD *DB*)
+;       (FORMAT T "~%
+;   
+;   )))
+;   
+;   )))
+;   )
+;   )
+;   asdf
+;   asdf
+;   teoiwrhfklaj sd 
+;   "))
+; --> BLOCK LET TAGBODY UNLESS IF PROGN 
+; ==>
+;   (LET* ((CD (CAR #:N-LIST0)))
+;     (SETQ #:N-LIST0 (CDR #:N-LIST0))
+;     (TAGBODY
+;       (FORMAT T "~%
+; 
+; )))
+; 
+; )))
+; )
+; )
+; asdf
+; asdf
+; teoiwrhfklaj sd 
+; ")))
+; 
+; caught STYLE-WARNING:
+;   The variable CD is defined but never used.
+; 
+; compilation unit finished
+;   caught 1 STYLE-WARNING condition
+STYLE-WARNING: redefining COMMON-LISP-USER::DUMP-DB in DEFUN
+DUMP-DB
+CL-USER> (defun dump-db()
+	   (dolist (cd *db*)
+	     (format t "~%~{~a:~10t~a~%~}" cd)))
+STYLE-WARNING: redefining COMMON-LISP-USER::DUMP-DB in DEFUN
+DUMP-DB
+CL-USER> (dump-db)
+
+TITLE:    Fly
+ARTIST:   Dixie Chicks
+RATING:   8
+RIPPED:   T
+
+TITLE:    Roses
+ARTIST:   Kathy Mattea
+RATING:   7
+RIPPED:   T
+NIL
+CL-USER> (defun prompt-read (prompt)
+	   (format *query-io* "~a: " prompt)
+	   (format-output *query-io*)
+	   (read-line *query-io*))
+; in: DEFUN PROMPT-READ
+;     (FORMAT-OUTPUT *QUERY-IO*)
+; 
+; caught STYLE-WARNING:
+;   undefined function: FORMAT-OUTPUT
+; 
+; compilation unit finished
+;   Undefined function:
+;     FORMAT-OUTPUT
+;   caught 1 STYLE-WARNING condition
+PROMPT-READ
+CL-USER> (defun prompt-read (prompt)
+	   (format *query-io* "~a: " prompt)
+	   (force-output *query-io*)
+	   (read-line *query-io*))
+STYLE-WARNING: redefining COMMON-LISP-USER::PROMPT-READ in DEFUN
+PROMPT-READ
+CL-USER> (defun prompt-for-cd()
+	   (make-cd
+	    (prompt-read "Title")
+	    (prompt-read "Artist")
+	    (or(parse-integer(prompt-read "Rating") :junk-allowed t) 0)
+	    (y-or-n-p "Ripped [y/n]: ")))
+PROMPT-FOR-CD
+CL-USER> (defun add-cds ()
+	   (loop (add-record (prompt-for-cd))
+		 (if (not (y-or-n-p "Another [y/n]: ")) (return))))
+ADD-CDS
+CL-USER> (add-cds)
+Title: Rockin' the Suburbs
+Artist: Ben Folds
+Rating: 6
+
+Ripped [y/n]:  (y or n) y
+
+Another [y/n]:  (y or n) y
+Title: Give Us a Break
+Artist: Limpopo
+Rating: 10
+
+Ripped [y/n]:  (y or n) y
+
+Another [y/n]:  (y or n) y
+Title: Lyle Lovett
+Artist: Lyle Lovett
+Rating: 9
+
+Ripped [y/n]:  (y or n) y
+
+Another [y/n]:  (y or n) n
+NIL
+CL-USER> (defun save-db (filename)
+	   (with-open-file(out filename
+			       :direction :output
+			       :if-exists :supersede)
+			  (with-standard-io-syntax
+			   (print *db* out))))
+SAVE-DB
+CL-USER> (save-db "D:/Amith/lisp-projects/my-cds.db")
+((:TITLE "Lyle Lovett" :ARTIST "Lyle Lovett" :RATING "9" :RIPPED T)
+          (:TITLE "Give Us a Break" :ARTIST "Limpopo" :RATING "10" :RIPPED T)
+          (:TITLE "Rockin' the Suburbs" :ARTIST "Ben Folds" :RATING "6" :RIPPED
+           T)
+          (:TITLE "Fly" :ARTIST "Dixie Chicks" :RATING 8 :RIPPED T)
+          (:TITLE "Roses" :ARTIST "Kathy Mattea" :RATING 7 :RIPPED T))
+CL-USER> (defun load-db (filename)
+	   (with-open-file (in filename)
+			   (with-standard-io-syntax
+			    (setf *db* (read in)))))
+LOAD-DB
+CL-USER> (defun load-db (filename)
+	   (with-open-file (in filename)
+			   ( with-standard-io-syntax
+			     (setf *db* (read in)))))
+STYLE-WARNING: redefining COMMON-LISP-USER::LOAD-DB in DEFUN
+LOAD-DB
+CL-USER> (remove-if-not #'evenp '(1 2 3 4 5 6 7 8 9 10))
+(2 4 6 8 10)
+CL-USER> (remove-if-not #'(lambda (x) (=0 (mod x 2))) '(1 2 3 4 5 6 7 8 9 10))
+
+; in: REMOVE-IF-NOT #'(LAMBDA (X) (=0 (MOD X 2)))
+;     (=0 (MOD X 2))
+; 
+; caught STYLE-WARNING:
+;   undefined function: =0
+; 
+; compilation unit finished
+;   Undefined function:
+;     =0
+;   caught 1 STYLE-WARNING condition
+CL-USER> (remove-if-not #'(lambda (x) ( = 0 (mod x 2))) '(1 2 3 4 5 6 7 8 9 10))
+(2 4 6 8 10)
+CL-USER> 
